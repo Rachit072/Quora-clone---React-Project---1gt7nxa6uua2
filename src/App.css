@@ -1,0 +1,76 @@
+.main-container{
+  background-image: url("https://qsf.fs.quoracdn.net/-4-ans_frontend_assets.images.home_page_bg_desktop.png-26-4770753d59b970e1.png");
+  background-size: cover;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 100%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}   
+.container{
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
+  background-color:white;
+  height: 550px;
+  width: 730px;
+  border-radius: 5px;
+  
+}
+.signup{
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  width: 220x;
+  margin-bottom: 20px;
+  gap: 20px;
+  border-right: 1px solid lightgray;
+ 
+}
+.login-form{
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  gap: 15px;
+}
+.su-btn:hover{
+  cursor: pointer;
+}
+.form-container{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+  
+}
+.lg-btn{
+  margin-top: 10px;
+  height: 35px;
+  width: 270px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding-left: 10px;
+  cursor: pointer;
+}
+.nav{
+  text-decoration: none;
+  color: gray;
+  font-size: small;
+  padding: 5px;
+}
+.navbar{
+  border-top: 1px solid lightgrey ;
+  padding: 10px 25px ;
+}
+.nav:hover{
+  text-decoration: underline;
+}
+.home-header{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5px 50px;
+  background-color: whitesmoke;
+
+}
