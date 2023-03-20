@@ -1,0 +1,29 @@
+{
+    "data": [
+    {
+    "id": 1,
+    "question": "What is React?",
+    "answer": "React is a JavaScript library for building user interfaces."
+    },
+    {
+    "id": 2,
+    "question": "What is JSX in React?",
+    "answer": "JSX is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript code. It's used to define React elements."
+    },
+    {
+    "id": 3,
+    "question": "What is state in React?",
+    "answer": "State is an object that holds data that can change over time in a React component. It's used to manage the dynamic behavior of a component."
+    },
+    {
+    "id": 4,
+    "question": "What is a React component?",
+    "answer": "A React component is a reusable piece of code that defines the structure and behavior of a part of a user interface."
+    },
+    {
+    "id": 5,
+    "question": "What is the difference between props and state in React?",
+    "answer": "Props are used to pass data from a parent component to a child component, while state is used to manage the dynamic behavior of a component. Props are read-only and cannot be modified by the child component, while state can be modified by the component itself."
+    }
+    ]
+    }

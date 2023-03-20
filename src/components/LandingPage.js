@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
-function LandingPage(handlelp){
+
+function LandingPage(){
+    const [login,SetLogin] = useState(false);
+    function handle(){
+        SetLogin(true);
+    }
   
     return <div>
         <div className="main-container">
@@ -14,7 +19,7 @@ function LandingPage(handlelp){
                             <div>
                                 <img style={{height:"24px",weight:"24px",paddingRight:"5px"}} src={"https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"} alt=" "/> 
                             </div> 
-                            <div style={{paddingTop:"5px"}}>
+                            <div style={{paddingTop:"2px"}}>
                                 Continue with Google
                             </div> 
                         </div>
@@ -22,7 +27,7 @@ function LandingPage(handlelp){
                             <div>
                                 <img style={{height:"20px",weight:"20px",paddingRight:"7px",paddingLeft:"3px"}} src={"https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"} alt=" "/> 
                             </div>
-                            <div style={{paddingTop:"3px"}}>
+                            <div style={{paddingTop:"1px"}}>
                                 Continue with Facebook
                             </div>
                         </div>
@@ -30,7 +35,7 @@ function LandingPage(handlelp){
                     </div>
                     
                     <div className="login-form">
-                    <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} onClick={handlelp} >Login</div>
+                    <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} >Login</div>
                         <div>
                             <div style={{fontWeight:"bold"}}>Email</div>
                             <div><input className="lg-btn" type="text" placeholder="Your email" /></div>
@@ -39,7 +44,11 @@ function LandingPage(handlelp){
                         <div style={{fontWeight:"bold"}}>Password</div>
                         <div><input className="lg-btn" type="text" placeholder="Your password"/></div>
                     </div>
-                    <div style={{color:"gray"}}>Forgot password? <span><button style={{marginLeft:"90px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button></span></div>
+                    <div style={{color:"gray"}}>Forgot password? <span>
+                    
+                        <button onClick={handle} style={{marginLeft:"90px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button>
+                    
+                        </span></div>
                     </div>
                 </div>
                 <div ><button className="hindi" style={{color:"blue",border:"none",cursor:"pointer",padding:"15px 2px",backgroundColor:"white"}}>हिन्दी</button>&gt;</div>
@@ -57,6 +66,7 @@ function LandingPage(handlelp){
             </div>
             </div>
         </div>
+       
     </div>
 
 }

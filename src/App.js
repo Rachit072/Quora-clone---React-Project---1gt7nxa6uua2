@@ -5,22 +5,25 @@ import LandingPage from './components/LandingPage';
 
 
 function App() {
-  const [lpstatus, setLpstatus] = useState(true);
-
-  const handlelp = () => {
-    setLpstatus(false);
-  };
-
-  const handlehome = () => {
-    setLpstatus(true);
-  };
+  const [login,SetLogin] = useState(false);
+  let show;
+  if(login){
+    show = <LandingPage/>
+  }
+  else 
+  show = <Home/>
   return (
     <div className="App">
-         {lpstatus ? (
-        <LandingPage onClick={handlelp} />
-      ) : (
-        <Home onClick={handlehome} />
-      )}
+
+      {/* { lpstatus ? <LandingPage/> : <Home/>}
+      <button onClick={handlelp}>Enter</button> */}
+      {/* <Router>
+      <Routes>
+        <Route exact path="/" component={<LandingPage/>} />
+        <Route path="/main" component={<Home/>} />
+      </Routes>
+    </Router> */}
+    {show}
     </div>
   );
 }
