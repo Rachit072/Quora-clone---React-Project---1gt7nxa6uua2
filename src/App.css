@@ -67,10 +67,11 @@
 .nav:hover{
   text-decoration: underline;
 }
+
 .home-header{
   display: flex;
-  justify-content: space-evenly;
-  padding: 5px 50px;
+  justify-content: space-between;
+  padding: 5px 5px 5px 50px;
   background-color: whitesmoke;
 
 }
@@ -78,7 +79,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 20px;
+  padding: 10px;
   gap: 10px;
 }
 .btn{
@@ -86,16 +87,25 @@
   color:white ;
   border: none;
   padding: 5px 10px;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 .btn:hover{
   cursor: pointer;
  
 }
+.search-res{
+  position: fixed;
+  z-index:2;
+  top: 60px;
+  left: 190px;
+  background-color: whitesmoke;
+  overflow: auto;
+}
 .res-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 10px;
 }
 .search-result{
   display: flex;
@@ -137,7 +147,9 @@
 .side-container {
   display: flex;
 }
-
+/* .sidebar-box{
+  height: 100px;
+} */
 .sidebar-container {
   display: flex;
   flex-direction: column;
@@ -145,6 +157,7 @@
   margin-left: 10px;
   padding-right: 10px;
   width: 200px;
+  height: 300px;
 }
 
 .sb-questions{
@@ -160,10 +173,15 @@
 .ques:hover{
   cursor: pointer;
 }
-.content{
+.content-main{
   display: flex;
   gap: 50px;
   padding:10px 20px 10px 190px;
+}
+.content-box{
+  border: none;
+  padding: 5px;
+  width: 800px;
 }
 .card{
   display: flex;
@@ -180,10 +198,16 @@
   align-items: flex-start;
   gap: 40px;
   width: 700px;
+  
 }
 .profile-main{
   display: flex;
   justify-content: space-between;
+}
+.profile{
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+  padding-top: 10px;
 }
 .x-btn{
   border: none;
@@ -209,6 +233,7 @@
 }
 .vote-btn{
   border:none;
+  background-color: white;
 }
 .vote-btn:hover{
   cursor: pointer;
@@ -218,4 +243,15 @@
   border: 0.5px solid lightgray;
   border-radius: 5px;
 
+}
+.card-result{
+  width: 700px;
+  overflow-wrap: break-word;
+}
+.answer-p[contenteditable]:empty:before {
+  content: attr(placeholder);
+  color: gray;
+}
+.name-div:empty:before {
+  content: attr(placeholder);
 }

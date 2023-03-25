@@ -29,7 +29,7 @@ function SearchBar({handleSearch}){
     return <div>
         <div><input onChange={(e) => {
           setSearch(e.target.value);
-        }} style={{width:"900px",height:"30px",padding:"5px 10px",border:"1px solid lightgray"}} type="text" placeholder="🔍 Search for questions, people and topics" /></div>
+        }} style={{width:"800px",height:"30px",padding:"5px 10px",marginLeft:"20px",border:"1px solid lightgray"}} type="text" placeholder="🔍 Search for questions, people and topics" /></div>
     
     </div>
 }

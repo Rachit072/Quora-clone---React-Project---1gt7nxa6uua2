@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import {useNavigate } from 'react-router-dom';
 
 
-function LandingPage(){
-    const [login,SetLogin] = useState(false);
+function LoginPage(){
+    const navigate = useNavigate();
     function handle(){
-        SetLogin(true);
+        navigate('/Home.js');
     }
   
     return <div>
@@ -14,7 +15,7 @@ function LandingPage(){
                 <p style={{color:"gray",fontWeight:"bold"}}>A place to share knowledge and better understand the world</p>
                 <div className="form-container">
                     <div className="signup">
-                        <div><p style={{color:"gray"}}>By continuing you indicate that you agree to Quora’s <span style={{color:"blue"}}>Terms of Service</span> and <span style={{color:"blue"}}>Privacy Policy.</span></p></div>
+                        <div><p style={{color:"gray"}}>By continuing you indicate that you agree to Quora's <span style={{color:"blue"}}>Terms of Service</span> and <span style={{color:"blue"}}>Privacy Policy.</span></p></div>
                         <div className="su-btn" style={{border:"1px solid lightgrey",borderRadius:"3px",padding:"5px",display:"flex"}}>
                             <div>
                                 <img style={{height:"24px",weight:"24px",paddingRight:"5px"}} src={"https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"} alt=" "/> 
@@ -34,24 +35,24 @@ function LandingPage(){
                         <div><button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>signup with email</button></div>
                     </div>
                     
-                    <div className="login-form">
+                <form onSubmit={handle} className="login-form">
                     <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} >Login</div>
                         <div>
                             <div style={{fontWeight:"bold"}}>Email</div>
-                            <div><input className="lg-btn" type="text" placeholder="Your email" /></div>
+                            <div><input className="lg-btn" type="email" required placeholder="Your email" /></div>
                         </div>
                     <div>
                         <div style={{fontWeight:"bold"}}>Password</div>
-                        <div><input className="lg-btn" type="text" placeholder="Your password"/></div>
+                        <div><input className="lg-btn" type="password" placeholder="Your password" required/></div>
                     </div>
                     <div style={{color:"gray"}}>Forgot password? <span>
                     
-                        <button onClick={handle} style={{marginLeft:"90px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button>
+                        <button type="submit" style={{marginLeft:"90px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button>
                     
                         </span></div>
-                    </div>
+                </form>
                 </div>
-                <div ><button className="hindi" style={{color:"blue",border:"none",cursor:"pointer",padding:"15px 2px",backgroundColor:"white"}}>हिन्दी</button>&gt;</div>
+            <div ><button className="hindi" style={{color:"blue",border:"none",cursor:"pointer",padding:"15px 2px",backgroundColor:"white"}}>हिन्दी</button>&gt;</div>
             <div className="navbar">
                 <a href="/" className="nav">About.</a>
                 <a href="/about" className="nav">Careers.</a>
@@ -70,4 +71,4 @@ function LandingPage(){
     </div>
 
 }
-export default LandingPage;
+export default LoginPage;

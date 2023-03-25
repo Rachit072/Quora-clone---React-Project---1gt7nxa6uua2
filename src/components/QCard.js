@@ -1,6 +1,18 @@
-import React,{useState} from "react";
+import React,{useState,useEffect} from "react";
 
-function QCard(){
+function QCard({que,ans,id,name,avator}){
+    const [text, setText] = useState(() => localStorage.getItem(`text-${id}`) || '');
+    function handleanswerChange(event) {
+        setText(event.target.textContent);
+    }
+    useEffect(() => {
+        localStorage.setItem(`text-${id}`, text);
+    }, [id, text]);
+
+    const [isEditable, setIsEditable] = useState(false);
+    const makeEditable=()=> {
+        setIsEditable(!isEditable);
+    }
     const [isHidden, setIsHidden] = useState(false);
     const [undoshown,setUndoshow] = useState(false);
     const handleHide = () => {
@@ -26,10 +38,10 @@ function QCard(){
                 <div className="profile-main">
                 { !undoshown &&
                     <div className="profile-container">
-                        <div className="logo"><img style={{height:"70px",width:"70px",margin:"3px",padding:"2px", borderRadius:"50%",  border: "2px solid #cddc39"}} src="https://cdn-icons-png.flaticon.com/512/147/147140.png?w=740&t=st=1679312970~exp=1679313570~hmac=a6ae4f263b971f97d8b80dfeba9b6bee331d95583b64b1848f433b007aa780cc" alt="error" /></div>
-                        <div className="profile" style={{height:"60px"}}>
-                            <div className="card-name"><p style={{fontWeight:"bold"}}>Anonymous</p></div>
-                            <div className="card-details"><p>Lorem ipsum dolor sit amet consectetur</p></div>
+                        <div className="logo"><img style={{height:"36px",width:"36px",margin:"3px",padding:"2px", borderRadius:"50%",  border: "2px solid #cddc39"}} src={avator} alt="_" /></div>
+                        <div className="profile">
+                            <div style={{display:"border-box",fontWeight:"bold",fontSize:"small"}} className="name-div" placeholder="Anonymous">{name}</div>
+                            <div style={{display:"border-box",fontSize:"x-small",color:"#636466"}}></div>
                         </div>
                     </div>}
                     <div>
@@ -42,9 +54,15 @@ function QCard(){
                 </div>
                 <div>
                 {!isHidden &&
-                    <div>
-                        <p style={{fontWeight:"bold"}}>deserunt dolorum dolores maiores earum architecto.</p>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In quos consequuntur eveniet nostrum earum cupiditate minima voluptas, iste obcaecati, ad dolor, asperiores laboriosam praesentium. Quia debitis earum cum magni dolorem.</p>
+                    <div key={id} className="card-result">
+                        <div>
+                            <p style={{fontWeight:"bold"}}>{que}</p>
+                            {isEditable &&
+                            <p className="answer-p" contentEditable={true} placeholder="  Type your Answer here" onInput={handleanswerChange} >{text}</p>}
+                        </div>
+                        <div style={{paddingBottom:"10px"}}>
+                            <button className="btn" onClick={makeEditable}>Answer</button>
+                        </div>
                     </div>
                     }
                 </div>
@@ -52,16 +70,14 @@ function QCard(){
                 {!isHidden &&
                 <div className="vote-container">
                     <div className="vote-box">
-                        <button className="vote-btn" onClick={increase}>↑</button><span style={{padding:"3px"}}>{upcounter}</span>
+                        <button className="vote-btn" onClick={increase}><img style={{ paddingTop:"2px", height:"15px",weight:"15px"}} src="https://e7.pngegg.com/pngimages/764/817/png-clipart-triangle-point-green-leaf-up-arrow-file-angle-web-design.png" alt="↑" /></button><span style={{padding:"0px 2px ",fontSize:"medium"}}>{upcounter}</span>
                     </div>
                     <div className="vote-box">
-                        <button className="vote-btn"onClick={increase2} >↓</button><span style={{padding:"3px"}}>{downcounter}</span>
+                        <button className="vote-btn"onClick={increase2} ><img style={{paddingTop:"2px",height:"15px",weight:"15px"}} src="https://e7.pngegg.com/pngimages/55/247/png-clipart-dainese-logo-line-triangle-point-red-down-arrow-s-angle-web-design.png" alt="↓" /></button><span style={{padding:"0px 2px"}}>{downcounter}</span>
                     </div>
                 </div>}
-                </div>
-                
+                </div>     
             </div>
-          
         </div>
     </div>
 }

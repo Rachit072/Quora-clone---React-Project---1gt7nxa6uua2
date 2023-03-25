@@ -12,7 +12,7 @@ function SideBar(){
         window.location.href = url;
       };
 
-    return <div>
+    return <div className="sidebar-box">
         <ul>
             {questions.map((question, index) => (
                 <li className="sb-questions" key={index} onClick={() => handleQuestionClick(question.url)}>
