@@ -29,6 +29,41 @@
     "answer": "A React component is a reusable piece of code that defines the structure and behavior of a part of a user interface."
     },
     {
+        "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/256.jpg",
+        "name": "Crystel",
+        "id": "6",
+        "question": "What is JavaScript?",
+        "answer": "JavaScript is a programming language that is used to create interactive web pages and web applications."
+      },
+      {
+        "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/245.jpg",
+        "name": "Carissa",
+        "id": "7",
+        "question": "What is the virtual DOM in React?",
+        "answer": "The virtual DOM is a lightweight representation of the actual DOM in memory that React uses to efficiently update the UI."
+        },
+      {
+        "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1192.jpg",
+        "name": "Ford",
+        "id": "8",
+        "question": "What is a callback function in JavaScript?",
+        "answer": "A callback function is a function that is passed as an argument to another function and is executed at a later time."
+        },
+      {
+        "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/960.jpg",
+        "name": "Lina",
+        "id": "9",
+        "question": "What is the difference between let and var in JavaScript?",
+        "answer": "The main difference between let and var in JavaScript is that let is block-scoped, meaning it is only accessible within the block it is defined in, while var is function-scoped, meaning it is accessible throughout the entire function it is defined in."
+      },
+      {
+        "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/556.jpg",
+        "name": "Domenic",
+        "id": "10",
+        "question": "What is a component in React?",
+        "answer": "A component in React is a modular, reusable piece of code that represents a part of the user interface and can be composed with other components to build complex UIs."
+        },
+    {
     "id": 5,
     "avator": "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/1053.jpg",
     "name": "Theresia",

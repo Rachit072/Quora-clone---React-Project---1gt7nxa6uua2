@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import { auth,provider } from "./Auth/Firebase";
+import { signInWithPopup } from "firebase/auth";
 import {useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import Home from './Home';
 
 
 function LoginPage(){
+    const [value,setValue] = useState('');
+    const handlesignin=()=>{
+        signInWithPopup(auth,provider).then((data)=>{
+            setValue(data.user.email);
+            localStorage.setItem("email",data.user.email);
+        })
+    }
+    useEffect(()=>{
+        setValue(localStorage.getItem("email"));
+    })
+    const [name, setName] = useState('');
+    const handleNameChange = (event) => {
+      setName(event.target.value);
+    };
     const navigate = useNavigate();
     function handle(){
         navigate('/Home.js');
+        localStorage.setItem('username', name);
     }
   
     return <div>
+        {value?<Home/>:
         <div className="main-container">
             <div className="container">
                 <h1 style={{color:"rgb(150,0,0)"}}>Quora</h1>
@@ -20,7 +40,7 @@ function LoginPage(){
                             <div>
                                 <img style={{height:"24px",weight:"24px",paddingRight:"5px"}} src={"https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-webinar-optimizing-for-success-google-business-webinar-13.png"} alt=" "/> 
                             </div> 
-                            <div style={{paddingTop:"2px"}}>
+                            <div style={{paddingTop:"2px"}} onClick={handlesignin}>
                                 Continue with Google
                             </div> 
                         </div>
@@ -38,8 +58,8 @@ function LoginPage(){
                 <form onSubmit={handle} className="login-form">
                     <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} >Login</div>
                         <div>
-                            <div style={{fontWeight:"bold"}}>Email</div>
-                            <div><input className="lg-btn" type="email" required placeholder="Your email" /></div>
+                            <div style={{fontWeight:"bold"}}>Username</div>
+                            <div><input className="lg-btn" type="text" required value={name} onChange={handleNameChange} placeholder="Your Username/email" /></div>
                         </div>
                     <div>
                         <div style={{fontWeight:"bold"}}>Password</div>
@@ -66,8 +86,7 @@ function LoginPage(){
                 <span style={{fontSize:"smaller"}}>© QuorFakea, Inc. 2023</span>
             </div>
             </div>
-        </div>
-       
+        </div>}
     </div>
 
 }
