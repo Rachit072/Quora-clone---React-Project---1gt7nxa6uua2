@@ -176,7 +176,7 @@
 .content-main{
   display: flex;
   gap: 50px;
-  padding:10px 20px 10px 190px;
+  padding:10px 20px 10px 50px;
 }
 .content-box{
   border: none;

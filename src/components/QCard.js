@@ -69,22 +69,18 @@ function QCard({que,ans,id,name,avator}){
                     <div key={id} className="card-result">
                         <div>
                             <p style={{fontWeight:"bold"}}>{que}</p>
-                            <div>
-                                {editing ? (
+                            <div>{editing ? (
                                 <div>
                                     <textarea type="text" value={text} style={{width:"650px",height:"125px",fontSize:"12px",resize:"none",padding:"8px 15px",margin:"5px",borderRadius:"5px",border:"0.5px solid lightgrey"}} onChange={handleInputChange} />
                                     <div style={{margin:"5px"}}>
                                         <button className="btn"  onClick={handleSaveClick}>Save</button>
                                     </div>
-                                </div>
-                                ) : (
-                                <div>
-                                    <p>{text}</p>
+                                </div>) : (
+                                <div><p>{text}</p>
                                     <div style={{paddingBottom:"10px"}}>
                                         <button className="btn" onClick={handleButtonClick}>Answer</button>
                                     </div>
-                                </div>
-                                )}
+                                </div>)}
                             </div>
                         </div>
                     </div>}

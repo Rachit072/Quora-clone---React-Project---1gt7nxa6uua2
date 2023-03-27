@@ -6,25 +6,15 @@ import LoginPage from './components/LoginPage';
 
 
 function App() {
-  // const [login,SetLogin] = useState(false);
-  // let show;
-  // if(!login){
-  //   show = <LoginPage/>
-  // }
-  // else 
-  // show = <Home/>
   return (
-    <div className="App">
-      {/* { lpstatus ? <LoginPage/> : <Home/>}
-      <button onClick={handlelp}>Enter</button> */}
+  <div className="App">
     <Router>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route path="/Home.js" element={<Home/>} />
       </Routes>
     </Router>
-    {/* {show} */}
-    </div>
+  </div>
   );
 }
 

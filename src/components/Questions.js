@@ -4,6 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 function Questions(){
     const [questions,setQuestions] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [question,setQuestion] = useState({
+      id: '',
+      question: '',
+      answer: '',
+    });
+
     useEffect(() => {
       const storedQuestions = JSON.parse(localStorage.getItem('questions'));
       if (storedQuestions) {
@@ -13,27 +19,18 @@ function Questions(){
     const toggleModal = () => {
       setShowModal(false);
     };
-    const handlesubmit=(event)=>{
-      const newQuestion = {
-        id: uuidv4(),
-        question: "",
-        answer: "",
-      };
-      setQuestions([...questions, newQuestion]);
-      localStorage.setItem('questions', JSON.stringify([...questions, newQuestion]));
-
-    }
     const handleAddQuestion = () => {
-      // const newQuestion = {
-      //   id: uuidv4(),
-      //   question: "",
-      //   answer: "",
-      // };
-      // setQuestions([...questions, newQuestion]);
-      // localStorage.setItem('questions', JSON.stringify([...questions, newQuestion]));
       setShowModal(true);
       };
-   
+    const handlesubmit = () => {
+        const newQuestion = { ...question, id: uuidv4() };
+        setQuestions([...questions, newQuestion]);
+        localStorage.setItem('questions',JSON.stringify([...questions, newQuestion]));
+      };
+    const handlechange = (e) => {
+          setQuestion({ ...question, [e.target.name]: e.target.value });
+      };
+
     return <div>
         <div className="Q-A">
             <div>
@@ -41,26 +38,20 @@ function Questions(){
             </div>
         </div>
         <div>
-          <form onSubmit={handlesubmit}>
-              {showModal && questions.map((question) => (
+          {showModal &&
+          <form onSubmit={handlesubmit} >
                 <div className="flex-col qwindow">
                   <div><h3 style={{color:"white"}} >Question:</h3></div>
                   <div>
                     <textarea placeholder="Type your question here" style={{padding:"10px",width:"400px"}}
-                      value={question.question}
-                      onChange={(e) =>
-                       setQuestions(
-                        questions.map((q) =>
-                        q.id === question.id ? { ...q, question: e.target.value } : q
-                    ))}/>
+                      value={question.question} name="question" onChange={handlechange} />
                   </div>
                   <div className="flex-row">
                     <div><button className="btn"onClick={toggleModal} >Cancel</button></div>
-                    <div> <button className="btn" type="submit">Add</button></div>
+                    <div><button className="btn" type="submit">Add</button></div>
                   </div>
                 </div>
-                ))}
-            </form>
+            </form>}
         </div>
       </div>
 }

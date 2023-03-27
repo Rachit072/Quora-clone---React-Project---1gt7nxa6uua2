@@ -16,7 +16,7 @@ function LoginPage(){
     }
     useEffect(()=>{
         setValue(localStorage.getItem("email"));
-    })
+    },[])
     const [name, setName] = useState('');
     const handleNameChange = (event) => {
       setName(event.target.value);
@@ -44,7 +44,7 @@ function LoginPage(){
                                 Continue with Google
                             </div> 
                         </div>
-                        <div className="su-btn" style={{border:"1px solid lightgrey",borderRadius:"3px",padding:"5px",display:"flex"}}>
+                        <div className="su-btn" style={{border:"1px solid lightgrey",borderRadius:"3px",padding:"6px",display:"flex"}}>
                             <div>
                                 <img style={{height:"20px",weight:"20px",paddingRight:"7px",paddingLeft:"3px"}} src={"https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"} alt=" "/> 
                             </div>
@@ -52,9 +52,8 @@ function LoginPage(){
                                 Continue with Facebook
                             </div>
                         </div>
-                        <div><button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>signup with email</button></div>
+                        <div><button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>Signup with email</button></div>
                     </div>
-                    
                 <form onSubmit={handle} className="login-form">
                     <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} >Login</div>
                         <div>
