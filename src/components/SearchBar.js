@@ -1,13 +1,13 @@
 import React,{useEffect, useState} from "react";
 
-import data from '../data.json';
+// import data from '../data.json';
 
 function SearchBar({handleSearch}){
     const [search,setSearch]=useState("");
     const [query, setQuery] = useState([]);
 
     useEffect(() => {
-        const res = data.data
+        const res = JSON.parse(localStorage.getItem('questions')) || [];
         setQuery(res);
     },[]);
 
