@@ -6,6 +6,7 @@ import SideBar from "./SideBar";
 import QCard from "./QCard";
 import Quote from "./Quote";
 import './Home.css';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function Home(){
     const [name, setName] = useState('');
@@ -14,10 +15,32 @@ function Home(){
     const [searchResults, setSearchResults] = useState([]);
     const [show,setShow]=useState(false);
     const navigate = useNavigate();
+    const [displayName, setDisplayName] = useState('');
+    const[profile,setProfile] = useState(false)
+
+    function showname(){
+        setProfile(!profile)
+    }
+    useEffect(() => {
+        const auth = getAuth();
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+          if (user) {
+            setDisplayName(user.displayName);
+          } else {
+            setDisplayName('');
+          }
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, []);
+    
 
     function handlelogout(){
         navigate('/');
         localStorage.removeItem("email");
+        window.location.reload();
     }
     useEffect(() => {
         const username = localStorage.getItem('username');
@@ -34,7 +57,7 @@ function Home(){
         setIsOpen(!isOpen);
     }
     function togglemessage(){
-        setShow(true);
+        setShow(!show);
     }
     function close(){
         setShow(false);
@@ -46,14 +69,17 @@ function Home(){
                 <div style={{color:"rgb(180,0,0)",fontWeight:"bold",fontSize:"xx-large"}}>Quora</div>
                 <SearchBar handleSearch={setSearchResults}/>
                 <div><Questions/></div>
-                <div style={{padding:"5px",marginLeft:"5px"}}><div className="logged"><img onClick={toggleDropdown} style={{height:"30px",weight:"30px",borderRadius:"50%"}} src="https://w7.pngwing.com/pngs/811/233/png-transparent-computer-icons-user-login-desktop-others-blue-computer-prints.png" alt="quest" /></div></div>
-                    {isOpen && (<div className="dropdown-menu">
+                <div onMouseEnter={toggleDropdown} onMouseLeave={toggleDropdown} style={{padding:"5px",marginLeft:"5px"}}><div className="logged"><img style={{height:"30px",weight:"30px" ,paddingTop:"5px",borderRadius:"50%"}} src="https://w7.pngwing.com/pngs/811/233/png-transparent-computer-icons-user-login-desktop-others-blue-computer-prints.png" alt="quest" /></div>
+                {isOpen && (<div className="dropdown-menu">
                                 <ul>
-                                    <li>Profile</li>
+                                    <li onClick={showname}>Profile
+                                        {profile ? <p style={{color:"rgb(150,0,0)",padding:"5px"}}>{displayName}</p>: <></>}
+                                    </li>
                                     <li>Settings</li>
                                     <li onClick={handlelogout}>Logout</li>
                                 </ul>
                     </div>)}
+                </div>    
             </div> 
         </header>
         <div className="search-res">
@@ -68,7 +94,7 @@ function Home(){
             <div>
                 <div className="quote-container">
                     <div style={{height:"420px",width:"150px"}}><Quote/></div>
-                    <div onClick={togglemessage}>
+                    <div onMouseEnter={togglemessage} onMouseLeave={togglemessage}>
                         <img  style={{height:"100px",width:"100px",borderRadius:"50%"}} src="https://i.kym-cdn.com/photos/images/original/002/429/796/96c.gif" alt="" />
                     </div>
                 </div>

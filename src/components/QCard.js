@@ -1,11 +1,29 @@
 import React,{useState,useEffect} from "react";
+// import Vote from "./Vote";
+import Vote2 from "./Vote2";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function QCard({que,ans,id,name,avator}){
     const [text, setText] = useState(localStorage.getItem(`question_${id}`) || "");
     const [editing, setEditing] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const [undoshown,setUndoshow] = useState(false);
-    const [voteData, setVoteData] = useState({ upvotes: 0, downvotes: 0 });
+    const [displayName, setDisplayName] = useState('');
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setDisplayName(user.displayName);
+      } else {
+        setDisplayName('');
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
     const handleButtonClick = () => {
         setEditing(true);
@@ -26,24 +44,6 @@ function QCard({que,ans,id,name,avator}){
         setUndoshow(false);
     }
     
-    useEffect(() => {
-        const storedVoteData = JSON.parse(localStorage.getItem(`voteData-${id}`));
-        if (storedVoteData) {
-            setVoteData(storedVoteData);
-        }
-    }, [id]);
-
-    const handleUpvote = () => {
-    const newVoteData = { upvotes: voteData.upvotes + 1, downvotes: voteData.downvotes };
-        localStorage.setItem(`voteData-${id}`, JSON.stringify(newVoteData));
-        setVoteData(newVoteData);
-    };
-
-    const handleDownvote = () => {
-    const newVoteData = { upvotes: voteData.upvotes, downvotes: voteData.downvotes + 1 };
-        localStorage.setItem(`voteData-${id}`, JSON.stringify(newVoteData));
-        setVoteData(newVoteData);
-    };
     return <div>
         <div className="card-container">
             <div className="card">
@@ -52,7 +52,9 @@ function QCard({que,ans,id,name,avator}){
                     <div className="profile-container">
                         <div className="logo"><img style={{height:"36px",width:"36px",margin:"3px",padding:"2px", borderRadius:"50%",  border: "2px solid #cddc39"}} src={avator} alt="_" /></div>
                         <div className="profile">
-                            <div style={{display:"border-box",fontWeight:"bold",fontSize:"small",paddingTop:"5px"}} className="name-div" placeholder="Anonymous">{name}</div>
+                            <div style={{display:"border-box",fontWeight:"bold",fontSize:"small",paddingTop:"5px"}} className="name-div" placeholder="Anonymous">
+                            {displayName ? displayName : name}
+                            </div>
                             <div style={{display:"border-box",fontSize:"x-small",color:"#636466"}}></div>
                         </div>
                     </div>}
@@ -82,19 +84,11 @@ function QCard({que,ans,id,name,avator}){
                                     </div>
                                 </div>)}
                             </div>
+                            {/* <Vote id={id}/> */}
+                            <Vote2 id={id}/>
                         </div>
                     </div>}
-                </div>
-                <div>{!isHidden &&
-                    <div className="vote-container">
-                        <div className="vote-box">
-                            <button className="vote-btn" onClick={handleUpvote}><img style={{ paddingTop:"2px", height:"15px",weight:"15px"}} src="https://e7.pngegg.com/pngimages/764/817/png-clipart-triangle-point-green-leaf-up-arrow-file-angle-web-design.png" alt="↑" /></button><span style={{padding:"0px 2px ",fontSize:"medium"}}>{voteData.upvotes}</span>
-                        </div>
-                        <div className="vote-box">
-                            <button className="vote-btn"onClick={handleDownvote} ><img style={{paddingTop:"2px",height:"15px",weight:"15px"}} src="https://e7.pngegg.com/pngimages/55/247/png-clipart-dainese-logo-line-triangle-point-red-down-arrow-s-angle-web-design.png" alt="↓" /></button><span style={{padding:"0px 2px"}}>{voteData.downvotes}</span>
-                        </div>
-                    </div>}
-                </div>     
+                </div>   
             </div>
         </div>
     </div>

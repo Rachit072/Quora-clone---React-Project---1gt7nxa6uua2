@@ -39,9 +39,10 @@ function Questions(){
         </div>
         <div>
           {showModal &&
-          <form onSubmit={handlesubmit} >
-                <div className="flex-col qwindow">
-                  <div><h3 style={{color:"white"}} >Question:</h3></div>
+          <form  onSubmit={handlesubmit} >
+            <div className="qcontainer">
+              <div className="flex-col qwindow">
+                <div><h3 style={{color:"darkgray"}} >Question:</h3></div>
                   <div>
                     <textarea placeholder="Type your question here" style={{padding:"10px",width:"400px"}}
                       value={question.question} name="question" onChange={handlechange} />
@@ -51,7 +52,8 @@ function Questions(){
                     <div><button className="btn" type="submit">Add</button></div>
                   </div>
                 </div>
-            </form>}
+            </div>
+          </form>}
         </div>
       </div>
 }
