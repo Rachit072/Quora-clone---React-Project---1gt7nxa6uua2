@@ -6,7 +6,8 @@ import SideBar from "./SideBar";
 import QCard from "./QCard";
 import Quote from "./Quote";
 import './Home.css';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getAuth,signOut, onAuthStateChanged } from 'firebase/auth';
+
 
 function Home(){
     const [name, setName] = useState('');
@@ -38,8 +39,14 @@ function Home(){
     
 
     function handlelogout(){
-        navigate('/');
         localStorage.removeItem("email");
+        localStorage.removeItem("username");
+        setName('')
+        localStorage.removeItem("displayName");
+        setDisplayName('');
+        navigate('/');
+        const auth = getAuth();
+        signOut(auth)
         window.location.reload();
     }
     useEffect(() => {
