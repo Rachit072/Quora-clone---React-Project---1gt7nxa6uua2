@@ -52,7 +52,10 @@ function LoginPage(){
                                 Continue with Facebook
                             </div>
                         </div>
-                        <div><button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>Signup with email</button></div>
+                        <div>
+                            <button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>
+                            Signup with email</button>
+                        </div>
                     </div>
                 <form onSubmit={handle} className="login-form">
                     <div style={{borderBottom:"1px solid lightgray",padding:"10px 0px"}} >Login</div>
