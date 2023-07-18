@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
-// import Vote from "./Vote";
-import Vote2 from "./Vote2";
+import Vote from "./Vote";
+// import Vote2 from "./Vote2";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function QCard({que,ans,id,name,avator}){
@@ -85,7 +85,7 @@ function QCard({que,ans,id,name,avator}){
                                 </div>)}
                             </div>
                             {/* <Vote id={id}/> */}
-                            <Vote2 id={id}/>
+                            <Vote id={id}/>
                         </div>
                     </div>}
                 </div>   
