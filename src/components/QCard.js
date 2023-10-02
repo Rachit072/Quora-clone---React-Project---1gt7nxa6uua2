@@ -3,12 +3,14 @@ import Vote from "./Vote";
 // import Vote2 from "./Vote2";
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-function QCard({que,ans,id,name,avator}){
+function QCard({que,ans,id,name,avator,editedAt,addedAt}){
     const [text, setText] = useState(localStorage.getItem(`question_${id}`) || "");
     const [editing, setEditing] = useState(false);
     const [isHidden, setIsHidden] = useState(false);
     const [undoshown,setUndoshow] = useState(false);
     const [displayName, setDisplayName] = useState('');
+    const [editedTime,setEditedTime] = useState(localStorage.getItem(`editedTime_${id}`) || "");
+     
 
   useEffect(() => {
     const auth = getAuth();
@@ -32,8 +34,12 @@ function QCard({que,ans,id,name,avator}){
         setText(e.target.value);
     };
     const handleSaveClick = () => {
+        const currentTime = new Date().toLocaleString();
+        setEditedTime(currentTime)
         setEditing(false);
         localStorage.setItem(`question_${id}`, text);
+        localStorage.setItem(`editedTime_${id}`, currentTime);
+       
     };
     const handleHide = () => {
         setIsHidden(true);
@@ -70,7 +76,10 @@ function QCard({que,ans,id,name,avator}){
                 {!isHidden &&
                     <div key={id} className="card-result">
                         <div>
-                            <p style={{fontWeight:"bold"}}>{que}</p>
+                            <div className="fr">
+                                <div><p style={{fontWeight:"bold"}}>{que}</p></div>
+                                <div><p style={{fontSize:"small"}}>{addedAt}</p></div>
+                            </div>                            
                             <div>{editing ? (
                                 <div>
                                     <textarea type="text" value={text} style={{width:"650px",height:"125px",fontSize:"12px",resize:"none",padding:"8px 15px",margin:"5px",borderRadius:"5px",border:"0.5px solid lightgrey"}} onChange={handleInputChange} />
@@ -79,6 +88,7 @@ function QCard({que,ans,id,name,avator}){
                                     </div>
                                 </div>) : (
                                 <div><p>{text}</p>
+                                     {editedTime && <p style={{fontSize:"small"}}>Edited at: {editedTime}</p>}
                                     <div style={{paddingBottom:"10px"}}>
                                         <button className="btn" onClick={handleButtonClick}>Answer</button>
                                     </div>

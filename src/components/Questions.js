@@ -4,10 +4,13 @@ import { v4 as uuidv4 } from 'uuid';
 function Questions(){
     const [questions,setQuestions] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    // const [addedTime,setAddedTime] = useState('');
     const [question,setQuestion] = useState({
       id: '',
       question: '',
+      addedAt: Date().toLocaleString(),
       answer: '',
+      editedAt:'',
     });
 
     useEffect(() => {
@@ -24,7 +27,10 @@ function Questions(){
       };
     const handlesubmit = () => {
         const newQuestion = { ...question, id: uuidv4() };
-        setQuestions([...questions, newQuestion]);
+        // const currentTime = new Date().toLocaleString();
+        const updatedQuestions = [...questions, newQuestion].reverse();
+        setQuestions(updatedQuestions);
+        // setAddedTime(currentTime);
         localStorage.setItem('questions',JSON.stringify([...questions, newQuestion]));
       };
     const handlechange = (e) => {

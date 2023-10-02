@@ -120,8 +120,15 @@ function Home(){
                 </div>
             </div>
         <div className="content-box">
-                {questions.map((question) => (
-                <QCard id={question.id} que={question.question} name={name} avator={"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/738.jpg"} />
+                {questions.slice().reverse().map((question) => (
+                <QCard 
+                id={question.id} 
+                que={question.question} 
+                name={name} 
+                avator={"https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/738.jpg"} 
+                addedAt={question.addedAt}
+                editedAt={question.editedAt}
+                />
                 ))}
                 <QCard que={"What Have You Been Up To?"}/>
         </div>
