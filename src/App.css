@@ -36,6 +36,10 @@
   padding: 25px;
   gap: 15px;
 }
+.input-pass{
+  border: none;
+  outline: none;
+}
 .su-btn:hover{
   cursor: pointer;
 }

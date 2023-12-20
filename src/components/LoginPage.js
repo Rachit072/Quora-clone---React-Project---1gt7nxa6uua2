@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { auth,provider } from "./Auth/Firebase";
+import { auth,provider,facebookAuthProvider } from "./Auth/Firebase";
 import { signInWithPopup } from "firebase/auth";
 import {useNavigate } from 'react-router-dom';
 import { useEffect } from "react";
 import Home from './Home';
+import { MyInput } from "./Input";
 
 
 function LoginPage(){
@@ -14,6 +15,14 @@ function LoginPage(){
             localStorage.setItem("email",data.user.email);
         })
     }
+
+    const handlefbsignin=()=>{
+        signInWithPopup(auth,facebookAuthProvider).then((data)=>{
+            setValue(data.user.email);
+            localStorage.setItem("email",data.user.email);
+        })
+    }
+
     useEffect(()=>{
         setValue(localStorage.getItem("email"));
     },[])
@@ -48,13 +57,13 @@ function LoginPage(){
                             <div>
                                 <img style={{height:"20px",weight:"20px",paddingRight:"7px",paddingLeft:"3px"}} src={"https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"} alt=" "/> 
                             </div>
-                            <div style={{paddingTop:"1px"}}>
+                            <div style={{paddingTop:"1px"}} onClick={handlefbsignin}>
                                 Continue with Facebook
                             </div>
                         </div>
                         <div>
-                            <button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>
-                            Signup with email</button>
+                            {/* <button style={{border:"none", color:"gray",textAlign:"center",backgroundColor:"white",marginLeft:"110px"}}>
+                            Signup with email</button> */}
                         </div>
                     </div>
                 <form onSubmit={handle} className="login-form">
@@ -65,13 +74,15 @@ function LoginPage(){
                         </div>
                     <div>
                         <div style={{fontWeight:"bold"}}>Password</div>
-                        <div><input className="lg-btn" type="password" placeholder="Your password" required/></div>
+                        <div>
+                            <MyInput className="lg-btn" type="password" placeholder="Your password" required />
+                        </div>
                     </div>
-                    <div style={{color:"gray"}}>Forgot password? <span>
-                    
-                        <button type="submit" style={{marginLeft:"90px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button>
-                    
-                        </span></div>
+                    <div style={{color:"gray"}}>
+                        <span>
+                            <button type="submit" style={{marginLeft:"110px",borderRadius:"15px",border:"none", cursor:"pointer",backgroundColor:"rgb(176, 182, 247)",color:"white",padding:"10px"}}>Login</button>
+                        </span>
+                    </div>
                 </form>
                 </div>
             <div ><button className="hindi" style={{color:"blue",border:"none",cursor:"pointer",padding:"15px 2px",backgroundColor:"white"}}>हिन्दी</button>&gt;</div>
